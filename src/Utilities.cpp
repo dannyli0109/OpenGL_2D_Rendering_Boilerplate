@@ -1,0 +1,22 @@
+#include "Utilities.h"
+std::string LoadFileAsString(std::string filename)
+{
+	std::stringstream fileSoFar;
+	std::ifstream file(filename);
+
+	if (file.is_open())
+	{
+		while (!file.eof())
+		{
+			std::string thisLine;
+			std::getline(file, thisLine);
+			fileSoFar << thisLine << std::endl;
+		}
+		return fileSoFar.str();
+	}
+	else
+	{
+		*Console::GetInstance() << "Error loading file: " << filename << true;
+		return "";
+	}
+}
