@@ -47,6 +47,6 @@ private:
 
 	ShaderProgram* lineShader;
 	ShaderProgram* quadShader;
-	ShaderProgram* frameBufferShader
+	ShaderProgram* frameBufferShader;
 };
 

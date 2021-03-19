@@ -54,54 +54,22 @@
     <ClCompile Include="lib\glad\glad.c">
       <Filter>Libs\glad</Filter>
     </ClCompile>
-    <ClCompile Include="ImGuiContainer.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="LineRenderer.cpp">
-      <Filter>Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="VertexBuffer.cpp">
-      <Filter>Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="VertexArrayObject.cpp">
-      <Filter>Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="Console.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="ShaderProgram.cpp">
-      <Filter>Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="AABB.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Utilities.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="FrameBuffer.cpp">
-      <Filter>Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="QuadRenderer.cpp">
-      <Filter>Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="IndexBuffer.cpp">
-      <Filter>Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="ResourceManager.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="QuadMesh.cpp">
-      <Filter>Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="Mesh.cpp">
-      <Filter>Rendering</Filter>
-    </ClCompile>
+    <ClCompile Include="src\QuadMesh.cpp" />
+    <ClCompile Include="src\QuadRenderer.cpp" />
+    <ClCompile Include="src\ResourceManager.cpp" />
+    <ClCompile Include="src\ShaderProgram.cpp" />
+    <ClCompile Include="src\Texture.cpp" />
+    <ClCompile Include="src\Utilities.cpp" />
+    <ClCompile Include="src\VertexArrayObject.cpp" />
+    <ClCompile Include="src\VertexBuffer.cpp" />
+    <ClCompile Include="src\Mesh.cpp" />
+    <ClCompile Include="src\ImGuiContainer.cpp" />
+    <ClCompile Include="src\IndexBuffer.cpp" />
+    <ClCompile Include="src\LineRenderer.cpp" />
+    <ClCompile Include="src\FrameBuffer.cpp" />
+    <ClCompile Include="src\Camera.cpp" />
+    <ClCompile Include="src\Console.cpp" />
+    <ClCompile Include="src\AABB.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\imgui\imconfig.h">
@@ -152,71 +120,29 @@
     <ClInclude Include="src\Graphics.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="ImGuiContainer.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="src\Matrices.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="LineRenderer.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="VertexBuffer.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="VertexArrayObject.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Console.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="LineVertex.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="ShaderProgram.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="AABB.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Utilities.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="FrameBuffer.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="QuadRenderer.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderer.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="QuadVertex.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="IndexBuffer.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="ResourceManager.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="VertexAttribute.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="FrameBufferVertex.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="QuadMesh.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Mesh.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
+    <ClInclude Include="src\VertexBuffer.h" />
+    <ClInclude Include="src\QuadMesh.h" />
+    <ClInclude Include="src\QuadRenderer.h" />
+    <ClInclude Include="src\QuadVertex.h" />
+    <ClInclude Include="src\Renderer.h" />
+    <ClInclude Include="src\ResourceManager.h" />
+    <ClInclude Include="src\ShaderProgram.h" />
+    <ClInclude Include="src\Texture.h" />
+    <ClInclude Include="src\Utilities.h" />
+    <ClInclude Include="src\VertexArrayObject.h" />
+    <ClInclude Include="src\VertexAttribute.h" />
+    <ClInclude Include="src\Mesh.h" />
+    <ClInclude Include="src\LineVertex.h" />
+    <ClInclude Include="src\ImGuiContainer.h" />
+    <ClInclude Include="src\IndexBuffer.h" />
+    <ClInclude Include="src\LineRenderer.h" />
+    <ClInclude Include="src\FrameBufferVertex.h" />
+    <ClInclude Include="src\FrameBuffer.h" />
+    <ClInclude Include="src\Console.h" />
+    <ClInclude Include="src\AABB.h" />
+    <ClInclude Include="src\Camera.h" />
   </ItemGroup>
 </Project>
