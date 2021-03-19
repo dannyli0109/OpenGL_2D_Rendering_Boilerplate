@@ -13,14 +13,14 @@
 #include "QuadRenderer.h"
 #include "FrameBuffer.h"
 #include "QuadMesh.h"
-//#include "FrameBufferVertex.h"
-//#include "Mesh.h"
+#include "SceneWindow.h"
 
 class ProgramManager
 {
 public:
 	ProgramManager() = default;
 	bool Init();
+	bool IsRunning();
 	void Run();
 	void Destory();
 private:
@@ -48,5 +48,10 @@ private:
 	ShaderProgram* lineShader;
 	ShaderProgram* quadShader;
 	ShaderProgram* frameBufferShader;
+
+	const int gridLimits = 10;
+
+	//ImVec2 sceneViewSize;
+	SceneWindow* sceneWindow;
 };
 

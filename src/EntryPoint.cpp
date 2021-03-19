@@ -1,13 +1,17 @@
 //These includes are specific to the way we’ve set up GLFW and GLAD.
-#include "ProgramManager.h"
+//#include "ProgramManager.h"
 #include "Debug.h"
+#include "App.h"
 
 int WinMain(void)
 {
     {
-        ProgramManager program;
+        App program;
         program.Init();
-        program.Run();
+        while (program.IsRunning())
+        {
+            program.Run();
+        }
         program.Destory();
     }
     _CrtDumpMemoryLeaks();

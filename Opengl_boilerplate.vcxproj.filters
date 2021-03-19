@@ -19,6 +19,9 @@
     <Filter Include="Libs\glad">
       <UniqueIdentifier>{1ddc5f31-0296-4ce2-827e-19d6f8b87bde}</UniqueIdentifier>
     </Filter>
+    <Filter Include="App">
+      <UniqueIdentifier>{c367e974-44f1-4636-8abb-ed8149de6ed1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="lib\imgui\imgui.cpp">
@@ -101,6 +104,15 @@
     </ClCompile>
     <ClCompile Include="src\Utilities.cpp">
       <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="App.cpp">
+      <Filter>App</Filter>
+    </ClCompile>
+    <ClCompile Include="GLFWCallbacks.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneWindow.cpp">
+      <Filter>Rendering</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -217,6 +229,15 @@
     </ClInclude>
     <ClInclude Include="src\ResourceManager.h">
       <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="App.h">
+      <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="GLFWCallbacks.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneWindow.h">
+      <Filter>Rendering</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

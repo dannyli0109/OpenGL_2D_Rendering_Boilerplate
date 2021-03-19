@@ -7,6 +7,7 @@ bool ProgramManager::Init()
 
 	if (!window->Init(1920, 1010, "Window")) return false;
 
+
 	// create console with size 100
 	// meaning it displays the last 100 messages
 	console = Console::CreateInstance(100);
@@ -32,24 +33,23 @@ bool ProgramManager::Init()
 
 	camera = new Camera({ 0, 0 }, 32.0f, windowSize);
 
+	sceneWindow = new SceneWindow("GameWindow", frameBuffer, camera);
+
 	imguiContainer = new ImGuiContainer();
 	imguiContainer->Init(window);
+
 }
 #pragma endregion
 
 #pragma region Run
 void ProgramManager::Run()
 {
-	while (window->Running())
-	{
-		float deltaTime = window->GetTime() - time;
-		time += deltaTime;
-		Begin();
-		Update(deltaTime);
-		Draw();
-		End();
-	}
-	window->Destroy();
+	float deltaTime = window->GetTime() - time;
+	time += deltaTime;
+	Begin();
+	Update(deltaTime);
+	Draw();
+	End();
 }
 #pragma endregion
 
@@ -57,53 +57,52 @@ void ProgramManager::Run()
 void ProgramManager::Begin()
 {
 	imguiContainer->Begin();
+
 }
 #pragma endregion
+
+bool ProgramManager::IsRunning()
+{
+	return window->Running();
+}
 
 #pragma region Update
 void ProgramManager::Update(float deltaTime)
 {
-	if (window->ShouldUpdateSize())
-	{
-		glm::vec2 size = window->GetSize();
-		glViewport(0, 0, size.x, size.y);
-		frameBuffer->Create(size.x, size.y);
-	}
+
 }
 #pragma endregion
 
 #pragma region Draw
 void ProgramManager::Draw()
 {
+
+	sceneWindow->Begin();
 	frameBuffer->Bind();
-	glClearColor(0.2, 0.2, 0.2, 1);
+	glClearColor(0, 0, 0, 1);
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	lineRenderer->Begin(camera);
-	for (int i = 0; i < 10; i++)
+	for (float i = (float)-gridLimits; i <= (float)gridLimits; i++)
 	{
-		lineRenderer->DrawLine({ i, 0, 1 }, { i, 5, 1 }, { 1, 0, 0, 1 });
+		glm::vec4 colour = (i == 0) ? glm::vec4(0.8f, 0.8f, 0.8f, 1) : glm::vec4(0.3f, 0.3f, 0.3f, 1);
+		lineRenderer->DrawLine({ i, -gridLimits, 0 }, { i, gridLimits, 0 }, colour);
+		lineRenderer->DrawLine({ -gridLimits, i, 0 }, { gridLimits, i, 0 }, colour);
 	}
 	lineRenderer->End();
 	FrameBuffer::Unbind();
 
 	glClear(GL_COLOR_BUFFER_BIT);
 
+	sceneWindow->Draw();
+	sceneWindow->End();
 	DrawGUI();
 }
 #pragma endregion
 
 #pragma region DrawGUI
 void ProgramManager::DrawGUI()
-{
-	ImGui::Begin("GameWindow");
-	{
-		ImGui::BeginChild("GameRender");
-		ImVec2 wsize = ImGui::GetWindowSize();
-		ImGui::Image((ImTextureID)frameBuffer->GetTextureID(), wsize, ImVec2(0, 1), ImVec2(1, 0));
-		ImGui::EndChild();
-	}
-	ImGui::End();
+{	
 
 	ImGui::Begin("Properties");
 
@@ -135,6 +134,8 @@ void ProgramManager::Destory()
 
 	delete camera;
 	delete imguiContainer;
+
+	delete sceneWindow;
 	Console::Destroy();
 	resourceManager->Destroy();
 }
