@@ -17,7 +17,7 @@ bool ProgramManager::Init()
 #pragma endregion
 
 	glm::vec2 windowSize = window->GetSize();
-	quadMesh = new QuadMesh();
+
 	frameBuffer = new FrameBuffer(windowSize.x, windowSize.y);
 
 	lineShader = new ShaderProgram("Line.vert", "Line.frag");
@@ -131,8 +131,11 @@ void ProgramManager::Destory()
 	delete quadShader;
 	delete quadRenderer;
 
+	delete frameBufferShader;
+
 	delete camera;
 	delete imguiContainer;
 	Console::Destroy();
+	resourceManager->Destroy();
 }
 #pragma endregion

@@ -25,12 +25,15 @@ Texture* ResourceManager::GetTexture(TextureKey key)
 	if (index < 0 || index > textures.size() - 1) return nullptr;
 	return textures[index];
 }
+
 void ResourceManager::Destroy()
 {
-	for (int i = 0; i < textures.size(); i++)
+	for (int i = 0; i < instance->textures.size(); i++)
 	{
-		delete textures[i];
+		delete instance->textures[i];
 	}
-	textures.clear();
+	instance->textures.clear();
+	delete instance;
+	instance = nullptr;
 }
 ResourceManager* ResourceManager::instance = nullptr;

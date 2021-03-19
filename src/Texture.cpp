@@ -13,6 +13,7 @@ Texture::Texture(std::string filename)
 	unsigned char* data = stbi_load(filename.c_str(), &width, &height, &channels, 0);
 	glm::vec2 size = { width, height };
 	Create(size, data, channels);
+	stbi_image_free(data);
 }
 
 Texture::~Texture()

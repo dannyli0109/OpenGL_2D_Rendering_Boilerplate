@@ -15,7 +15,7 @@ public:
 	void AddTexture(Texture* texture);
 	Texture* GetTexture(TextureKey key);
 	
-	void Destroy();
+	static void Destroy();
 private:
 	ResourceManager() {};
 
