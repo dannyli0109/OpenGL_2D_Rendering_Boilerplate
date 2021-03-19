@@ -29,6 +29,7 @@ public:
 
 public:
 	void DrawLine(const glm::vec3& p1, const glm::vec3& p2, const glm::vec4& color);
+	void DrawCircle(const glm::vec3& center, float size, const glm::vec4& color, int segmentCount);
 
 private:
 	std::vector<LineVertex> vertices;

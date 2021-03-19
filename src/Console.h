@@ -13,6 +13,7 @@ public:
 	Console& operator<< (std::string message);
 	Console& operator<< (const char* message);
 	Console& operator<< (float message);
+	Console& operator<< (double message);
 	Console& operator<< (int message);
 	Console& operator<< (bool flush);
 	void Flush();

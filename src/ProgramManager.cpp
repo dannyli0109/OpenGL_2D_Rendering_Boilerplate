@@ -7,7 +7,6 @@ bool ProgramManager::Init()
 
 	if (!window->Init(1920, 1010, "Window")) return false;
 
-
 	// create console with size 100
 	// meaning it displays the last 100 messages
 	console = Console::CreateInstance(100);
@@ -33,7 +32,7 @@ bool ProgramManager::Init()
 
 	camera = new Camera({ 0, 0 }, 32.0f, windowSize);
 
-	sceneWindow = new SceneWindow("GameWindow", frameBuffer, camera);
+	sceneWindow = new SceneWindow("GameWindow", frameBuffer, camera, window);
 
 	imguiContainer = new ImGuiContainer();
 	imguiContainer->Init(window);
@@ -69,15 +68,18 @@ bool ProgramManager::IsRunning()
 #pragma region Update
 void ProgramManager::Update(float deltaTime)
 {
-
+	glm::vec2 sceneCursorPos = sceneWindow->GetCursorPos();
+	cursorPos.x = sceneCursorPos.x;
+	cursorPos.y = sceneCursorPos.y;
 }
 #pragma endregion
 
 #pragma region Draw
 void ProgramManager::Draw()
 {
-
 	sceneWindow->Begin();
+	
+	// render the scene onto the frame buffer then render on to the scene window
 	frameBuffer->Bind();
 	glClearColor(0, 0, 0, 1);
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -89,6 +91,10 @@ void ProgramManager::Draw()
 		lineRenderer->DrawLine({ i, -gridLimits, 0 }, { i, gridLimits, 0 }, colour);
 		lineRenderer->DrawLine({ -gridLimits, i, 0 }, { gridLimits, i, 0 }, colour);
 	}
+	lineRenderer->DrawLine({ 0, 0, 0 }, { 1, 0, 0 }, { 1, 0, 0, 1 });
+	lineRenderer->DrawLine({ 0, 0, 0 }, { 0, 1, 0 }, { 0, 1, 0, 1 });
+
+	lineRenderer->DrawCircle({ cursorPos.x, cursorPos.y, 0 }, 2, { 1, 0, 0, 1 }, 64);
 	lineRenderer->End();
 	FrameBuffer::Unbind();
 

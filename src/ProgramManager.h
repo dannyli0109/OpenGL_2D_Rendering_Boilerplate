@@ -23,6 +23,8 @@ public:
 	bool IsRunning();
 	void Run();
 	void Destory();
+protected:
+	glm::vec2 cursorPos = { 0.0f, 0.0f };
 private:
 	void Begin();
 	void Update(float deltaTime);

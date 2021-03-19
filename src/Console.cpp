@@ -53,13 +53,19 @@ Console& Console::operator<<(const char* message)
 
 Console& Console::operator<<(float message)
 {
-	buffer += message;
+	buffer += std::to_string(message);
+	return *this;
+}
+
+Console& Console::operator<<(double message)
+{
+	buffer += std::to_string(message);
 	return *this;
 }
 
 Console& Console::operator<<(int message)
 {
-	buffer += message;
+	buffer += std::to_string(message);
 	return *this;
 }
 

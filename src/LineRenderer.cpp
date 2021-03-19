@@ -77,3 +77,21 @@ void LineRenderer::DrawLine(const glm::vec3& p1, const glm::vec3& p2, const glm:
 	
 	vertexCount += 2;
 }
+
+void LineRenderer::DrawCircle(const glm::vec3& center, float size, const glm::vec4& color, int segmentCount)
+{
+	float cosAngle = cos(2 * 3.14159f / segmentCount);
+	float sinAngle = sin(2 * 3.14159f / segmentCount);
+
+	glm::mat3 rotMat = { {cosAngle, -sinAngle, 0}, {sinAngle, cosAngle, 0}, {0, 0, 0} };
+
+	glm::vec3 plotPoint(0, size, 0);
+
+	for (int i = 0; i <= segmentCount; i++)
+	{
+		glm::vec3 p1 = center + plotPoint;
+		plotPoint = rotMat * plotPoint;
+		glm::vec3 p2 = center + plotPoint;
+		DrawLine(p1, p2, color);
+	}
+}
