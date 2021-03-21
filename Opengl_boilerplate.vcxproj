@@ -146,7 +146,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ConsoleLayer.cpp" />
+    <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="GLFWCallbacks.cpp" />
+    <ClCompile Include="Layer.cpp" />
+    <ClCompile Include="LayerStack.cpp" />
     <ClCompile Include="lib\glad\glad.c" />
     <ClCompile Include="lib\imgui\imgui.cpp" />
     <ClCompile Include="lib\imgui\imgui_demo.cpp" />
@@ -155,6 +159,7 @@
     <ClCompile Include="lib\imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="lib\imgui\imgui_tables.cpp" />
     <ClCompile Include="lib\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="SceneLayer.cpp" />
     <ClCompile Include="SceneWindow.cpp" />
     <ClCompile Include="src\AABB.cpp" />
     <ClCompile Include="src\Camera.cpp" />
@@ -178,7 +183,13 @@
     <ClCompile Include="App.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ConcreteEvent.h" />
+    <ClInclude Include="ConsoleLayer.h" />
+    <ClInclude Include="Event.h" />
+    <ClInclude Include="EventManager.h" />
     <ClInclude Include="GLFWCallbacks.h" />
+    <ClInclude Include="Layer.h" />
+    <ClInclude Include="LayerStack.h" />
     <ClInclude Include="lib\glad\glad.h" />
     <ClInclude Include="lib\glad\khrplatform.h" />
     <ClInclude Include="lib\imgui\imconfig.h" />
@@ -190,6 +201,7 @@
     <ClInclude Include="lib\imgui\imstb_textedit.h" />
     <ClInclude Include="lib\imgui\imstb_truetype.h" />
     <ClInclude Include="lib\stb_image\stb_image.h" />
+    <ClInclude Include="SceneLayer.h" />
     <ClInclude Include="SceneWindow.h" />
     <ClInclude Include="src\AABB.h" />
     <ClInclude Include="src\Camera.h" />

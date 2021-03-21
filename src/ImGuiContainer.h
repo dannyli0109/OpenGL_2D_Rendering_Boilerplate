@@ -1,6 +1,8 @@
 #pragma once
 #include "GUI.h"
-#include "Window.h"
+//#include "Window.h"
+
+class Window;
 class ImGuiContainer
 {
 public:
@@ -12,7 +14,7 @@ public:
 	ImGuiContainer(const ImGuiContainer&& other) = delete;
 	ImGuiContainer& operator=(const ImGuiContainer&& other) = delete;
 
-	void Init(Window* window);
+	void Init();
 	void Destroy();
 
 	void Begin();

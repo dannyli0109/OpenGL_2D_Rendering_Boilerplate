@@ -1,4 +1,19 @@
 #include "Window.h"
+#include "EventManager.h"
+#include "Event.h"
+Window* Window::CreateInstance()
+{
+	if (!instance)
+	{
+		instance = new Window();
+	}
+	return instance;
+}
+
+Window* Window::GetInstance()
+{
+	return instance;
+}
 
 Window::~Window()
 {
@@ -9,9 +24,6 @@ bool Window::Init(int width, int height, std::string name)
 {
 	if (!glfwInit())
 		return false;
-
-	// destroy existing window if exists
-	Destroy();
 
 	glfwWindow = glfwCreateWindow(width, height, name.c_str(), nullptr, nullptr);
 
@@ -32,6 +44,11 @@ bool Window::Init(int width, int height, std::string name)
 	glfwSetWindowPos(glfwWindow, 0, 30);
 
 	glfwSwapInterval(1);
+
+	glfwSetWindowUserPointer(glfwWindow, this);
+
+	glfwSetCursorPosCallback(glfwWindow, OnMouseMove);
+	glfwSetScrollCallback(glfwWindow, OnMouseScroll);
 
 	return true;
 }
@@ -54,7 +71,8 @@ float Window::GetTime()
 
 void Window::Destroy()
 {
-	if (glfwWindow) glfwDestroyWindow(glfwWindow);
+	if (instance) delete instance;
+	instance = nullptr;
 }
 
 glm::vec2 Window::GetSize()
@@ -71,3 +89,16 @@ bool Window::ShouldUpdateSize()
 	this->height = height;
 	return true;
 }
+
+void Window::OnMouseMove(GLFWwindow* window, double x, double y)
+{
+	EventManager::GetInstance()->OnMouseMove({ x, y });
+}
+
+void Window::OnMouseScroll(GLFWwindow* window, double xoff, double yoff)
+{
+	EventManager::GetInstance()->OnMouseScroll({ xoff, yoff });
+}
+
+Window* Window::instance = nullptr;
+

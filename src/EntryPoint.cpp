@@ -6,13 +6,13 @@
 int WinMain(void)
 {
     {
-        App program;
-        program.Init();
-        while (program.IsRunning())
+        App* program = new App();
+        while (program->IsRunning())
         {
-            program.Run();
+            program->Run();
         }
-        program.Destory();
+        program->Destory();
+        delete program;
     }
     _CrtDumpMemoryLeaks();
     

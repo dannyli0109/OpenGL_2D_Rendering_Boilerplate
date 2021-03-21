@@ -1,11 +1,12 @@
 #include "ProgramManager.h"
 
 #pragma region Init
-bool ProgramManager::Init()
+ProgramManager::ProgramManager()
 {
-	window = new Window();
+	eventManager = EventManager::CreateInstance(this);
 
-	if (!window->Init(1920, 1010, "Window")) return false;
+	window = Window::CreateInstance();
+	window->Init(1920, 1010, "Window");
 
 	// create console with size 100
 	// meaning it displays the last 100 messages
@@ -16,29 +17,12 @@ bool ProgramManager::Init()
 	resourceManager->AddTexture(new Texture("white.png"));
 #pragma endregion
 
-	glm::vec2 windowSize = window->GetSize();
-
-	frameBuffer = new FrameBuffer(windowSize.x, windowSize.y);
-
-	lineShader = new ShaderProgram("Line.vert", "Line.frag");
-	quadShader = new ShaderProgram("Quad.vert", "Quad.frag");
-	frameBufferShader = new ShaderProgram("FrameBuffer.vert", "FrameBuffer.frag");
-
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-	lineRenderer = new LineRenderer(lineShader, 8192);
-	quadRenderer = new QuadRenderer(quadShader, 8192);
-
-	camera = new Camera({ 0, 0 }, 32.0f, windowSize);
-
-	sceneWindow = new SceneWindow("GameWindow", frameBuffer, camera, window);
-
 	imguiContainer = new ImGuiContainer();
-	imguiContainer->Init(window);
+	imguiContainer->Init();
 
+	layerStack = new LayerStack();
 }
-#pragma endregion
+
 
 #pragma region Run
 void ProgramManager::Run()
@@ -47,7 +31,6 @@ void ProgramManager::Run()
 	time += deltaTime;
 	Begin();
 	Update(deltaTime);
-	Draw();
 	End();
 }
 #pragma endregion
@@ -56,7 +39,6 @@ void ProgramManager::Run()
 void ProgramManager::Begin()
 {
 	imguiContainer->Begin();
-
 }
 #pragma endregion
 
@@ -68,43 +50,13 @@ bool ProgramManager::IsRunning()
 #pragma region Update
 void ProgramManager::Update(float deltaTime)
 {
-	glm::vec2 sceneCursorPos = sceneWindow->GetCursorPos();
-	cursorPos.x = sceneCursorPos.x;
-	cursorPos.y = sceneCursorPos.y;
-}
-#pragma endregion
-
-#pragma region Draw
-void ProgramManager::Draw()
-{
-	sceneWindow->Begin();
-	
-	// render the scene onto the frame buffer then render on to the scene window
-	frameBuffer->Bind();
-	glClearColor(0, 0, 0, 1);
-	glClear(GL_COLOR_BUFFER_BIT);
-
-	lineRenderer->Begin(camera);
-	for (float i = (float)-gridLimits; i <= (float)gridLimits; i++)
+	for (Layer* layer : *layerStack)
 	{
-		glm::vec4 colour = (i == 0) ? glm::vec4(0.8f, 0.8f, 0.8f, 1) : glm::vec4(0.3f, 0.3f, 0.3f, 1);
-		lineRenderer->DrawLine({ i, -gridLimits, 0 }, { i, gridLimits, 0 }, colour);
-		lineRenderer->DrawLine({ -gridLimits, i, 0 }, { gridLimits, i, 0 }, colour);
+		layer->OnUpdate(deltaTime);
 	}
-	lineRenderer->DrawLine({ 0, 0, 0 }, { 1, 0, 0 }, { 1, 0, 0, 1 });
-	lineRenderer->DrawLine({ 0, 0, 0 }, { 0, 1, 0 }, { 0, 1, 0, 1 });
-
-	lineRenderer->DrawCircle({ cursorPos.x, cursorPos.y, 0 }, 2, { 1, 0, 0, 1 }, 64);
-	lineRenderer->End();
-	FrameBuffer::Unbind();
-
-	glClear(GL_COLOR_BUFFER_BIT);
-
-	sceneWindow->Draw();
-	sceneWindow->End();
-	DrawGUI();
 }
 #pragma endregion
+
 
 #pragma region DrawGUI
 void ProgramManager::DrawGUI()
@@ -128,21 +80,11 @@ void ProgramManager::End()
 #pragma region Destroy
 void ProgramManager::Destory()
 {
-	delete window;
-	delete lineShader;
-	delete lineRenderer;
-
-	delete frameBuffer;
-	delete quadShader;
-	delete quadRenderer;
-
-	delete frameBufferShader;
-
-	delete camera;
-	delete imguiContainer;
-
-	delete sceneWindow;
+	Window::Destroy();
 	Console::Destroy();
-	resourceManager->Destroy();
+	ResourceManager::Destroy();
+	EventManager::Destroy();
+	delete imguiContainer;
+	delete layerStack;
 }
 #pragma endregion

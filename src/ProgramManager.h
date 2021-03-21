@@ -14,46 +14,52 @@
 #include "FrameBuffer.h"
 #include "QuadMesh.h"
 #include "SceneWindow.h"
+#include "EventManager.h"
+#include "Event.h"
+#include "LayerStack.h"
 
 class ProgramManager
 {
 public:
-	ProgramManager() = default;
-	bool Init();
+	ProgramManager();
 	bool IsRunning();
 	void Run();
 	void Destory();
-protected:
-	glm::vec2 cursorPos = { 0.0f, 0.0f };
+
+	void OnEvent(Event* eventTriggerred)
+	{
+		
+		// eventTriggerred;
+		//*console << eventTriggerred->GetInfo() << true;
+	}
+
 private:
 	void Begin();
 	void Update(float deltaTime);
-	void Draw();
 	void DrawGUI();
 	void End();
-private:
+protected:
 	float time = 0.0f;
-private:
 	Window* window;
 	ImGuiContainer* imguiContainer;
 	Console* console;
-
-	Camera* camera;
 	ResourceManager* resourceManager;
-
-	LineRenderer* lineRenderer;
-
-	QuadMesh* quadMesh;
-	FrameBuffer* frameBuffer;
-	QuadRenderer* quadRenderer;
-
-	ShaderProgram* lineShader;
-	ShaderProgram* quadShader;
-	ShaderProgram* frameBufferShader;
-
-	const int gridLimits = 10;
-
-	//ImVec2 sceneViewSize;
-	SceneWindow* sceneWindow;
+	EventManager* eventManager;
+	LayerStack* layerStack;
 };
 
+
+//LineRenderer* lineRenderer;
+
+//QuadMesh* quadMesh;
+//FrameBuffer* frameBuffer;
+//QuadRenderer* quadRenderer;
+
+//ShaderProgram* lineShader;
+//ShaderProgram* quadShader;
+//ShaderProgram* frameBufferShader;
+
+//const int gridLimits = 10;
+
+//ImVec2 sceneViewSize;
+//SceneWindow* sceneWindow;

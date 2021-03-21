@@ -3,6 +3,9 @@
 #include <vector>
 #include "GUI.h"
 #include <sstream>
+#include <iomanip>
+#include <time.h>
+
 class Console
 {
 public:
@@ -26,6 +29,22 @@ private:
 	Console(int maxSize) { 
 		logs.resize(maxSize);
 	};
+	void AddTimeStamp()
+	{
+		if (buffer.size() == 0)
+		{
+			auto t = std::time(nullptr);
+			tm ts;
+			localtime_s(&ts, &t);
+			buffer += "[";
+			buffer += std::to_string(ts.tm_hour);
+			buffer += ":";
+			buffer += std::to_string(ts.tm_min);
+			buffer += ":";
+			buffer += std::to_string(ts.tm_sec);
+			buffer += "] ";
+		}
+	}
 	~Console() {};
 	static Console* instance;
 	std::vector<Message> logs;

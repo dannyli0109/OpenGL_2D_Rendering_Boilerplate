@@ -22,6 +22,12 @@
     <Filter Include="App">
       <UniqueIdentifier>{c367e974-44f1-4636-8abb-ed8149de6ed1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Events">
+      <UniqueIdentifier>{4304a04a-55e5-43c2-a2e8-e7fe40d697c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Layers">
+      <UniqueIdentifier>{c7906e00-7a39-473c-8f9c-4570c73f3a16}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="lib\imgui\imgui.cpp">
@@ -47,9 +53,6 @@
     </ClCompile>
     <ClCompile Include="src\Window.cpp">
       <Filter>Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="src\EntryPoint.cpp">
-      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="src\ProgramManager.cpp">
       <Filter>Core</Filter>
@@ -111,8 +114,26 @@
     <ClCompile Include="GLFWCallbacks.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
+    <ClCompile Include="EventManager.cpp">
+      <Filter>Core\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="Layer.cpp">
+      <Filter>Core\Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="LayerStack.cpp">
+      <Filter>Core\Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneLayer.cpp">
+      <Filter>App</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EntryPoint.cpp">
+      <Filter>App</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleLayer.cpp">
+      <Filter>App</Filter>
+    </ClCompile>
     <ClCompile Include="SceneWindow.cpp">
-      <Filter>Rendering</Filter>
+      <Filter>App</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -236,8 +257,29 @@
     <ClInclude Include="GLFWCallbacks.h">
       <Filter>Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>Core\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="EventManager.h">
+      <Filter>Core\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Layer.h">
+      <Filter>Core\Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="ConcreteEvent.h">
+      <Filter>Core\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="LayerStack.h">
+      <Filter>Core\Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneLayer.h">
+      <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="ConsoleLayer.h">
+      <Filter>App</Filter>
+    </ClInclude>
     <ClInclude Include="SceneWindow.h">
-      <Filter>Rendering</Filter>
+      <Filter>App</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

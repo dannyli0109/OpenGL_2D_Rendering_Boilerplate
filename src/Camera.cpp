@@ -14,3 +14,4 @@ glm::mat4 Camera::GetProjection()
 		(-windowSize.y / 2.0f + position.y) / zoom, (windowSize.y / 2.0f + position.y) / zoom, -1.0f, 1.0f
 	);
 }
+

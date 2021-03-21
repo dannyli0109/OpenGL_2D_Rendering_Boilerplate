@@ -1,12 +1,14 @@
 #include "ImGuiContainer.h"
+#include "Window.h"
 
 ImGuiContainer::~ImGuiContainer()
 {
     Destroy();
 }
 
-void ImGuiContainer::Init(Window* window)
+void ImGuiContainer::Init()
 {
+    Window* window = Window::GetInstance();
     // Setup Dear ImGui context
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
@@ -18,8 +20,8 @@ void ImGuiContainer::Init(Window* window)
     //ImGui::StyleColorsClassic();
 
     // Setup Platform/Renderer backends
-    ImGui_ImplGlfw_InitForOpenGL(window->Get(), true);
-    ImGui_ImplOpenGL3_Init();
+    //ImGui_ImplGlfw_InitForOpenGL(window->Get(), true);
+    ImGui_ImplOpenGL3_Init("#version 410");
 }
 
 void ImGuiContainer::Destroy()
@@ -31,8 +33,11 @@ void ImGuiContainer::Destroy()
 
 void ImGuiContainer::Begin()
 {
+    Window* window = Window::GetInstance();
+    ImGuiIO& io = ImGui::GetIO();
+    glm::vec2 windowSize = window->GetSize();
+    io.DisplaySize = ImVec2(windowSize.x, windowSize.y);
     ImGui_ImplOpenGL3_NewFrame();
-    ImGui_ImplGlfw_NewFrame();
     ImGui::NewFrame();
     // Make window dockable
     ImGui::DockSpaceOverViewport(ImGui::GetMainViewport(), ImGuiDockNodeFlags_PassthruCentralNode);

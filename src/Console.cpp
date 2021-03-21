@@ -41,30 +41,35 @@ void Console::Destroy()
 
 Console& Console::operator<<(std::string message)
 {
+	AddTimeStamp();
 	buffer += message;
 	return *this;
 }
 
 Console& Console::operator<<(const char* message)
 {
+	AddTimeStamp();
 	buffer += message;
 	return *this;
 }
 
 Console& Console::operator<<(float message)
 {
+	AddTimeStamp();
 	buffer += std::to_string(message);
 	return *this;
 }
 
 Console& Console::operator<<(double message)
 {
+	AddTimeStamp();
 	buffer += std::to_string(message);
 	return *this;
 }
 
 Console& Console::operator<<(int message)
 {
+	AddTimeStamp();
 	buffer += std::to_string(message);
 	return *this;
 }
