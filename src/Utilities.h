@@ -2,6 +2,6 @@
 #include <string>
 #include <fstream>
 #include <sstream>
-#include "Console.h"
+#include <iostream>
 
 std::string LoadFileAsString(std::string filename);

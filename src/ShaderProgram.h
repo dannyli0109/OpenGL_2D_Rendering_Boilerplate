@@ -2,7 +2,8 @@
 #include "Graphics.h"
 #include <string>
 #include "Utilities.h"
-#include "Console.h"
+#include <iostream>
+
 class ShaderProgram
 {
 public:

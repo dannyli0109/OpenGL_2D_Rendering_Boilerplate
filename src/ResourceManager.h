@@ -2,6 +2,9 @@
 #include <vector>
 
 class Texture;
+class ShaderProgram;
+class Camera;
+class Window;
 enum class TextureKey
 {
 	white = 0
@@ -13,7 +16,13 @@ public:
 	static ResourceManager* GetInstance();
 	static ResourceManager* CreateInstance();
 	void AddTexture(Texture* texture);
-	Texture* GetTexture(TextureKey key);
+	Texture* GetTexture(int key);
+	void AddShader(ShaderProgram* shader);
+	ShaderProgram* GetShader(int key);
+	void AddCamera(Camera* camera);
+	Camera* GetCamera(int key);
+	void AddWindow(Window* window);
+	Window* GetWindow(int key);
 	
 	static void Destroy();
 private:
@@ -29,6 +38,8 @@ private:
 
 	static ResourceManager* instance;
 	std::vector<Texture*> textures;
-
+	std::vector<ShaderProgram*> shaders;
+	std::vector<Camera*> cameras;
+	std::vector<Window*> windows;
 };
 

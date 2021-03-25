@@ -1,24 +1,24 @@
 #pragma once
 #include <string>
-#include "Graphics.h"
 #include <functional>
-//#include "EventManager.h"
-//#include "Event.h"
+#include "Matrices.h"
+
+class GLFWwindow;
 
 class Window
 {
 public:
-	static Window* CreateInstance();
-	static Window* GetInstance();
-	static void Destroy();
+	Window(int width, int height, std::string title);
+	~Window();
 
 	Window(const Window& other) = delete;
 	Window& operator=(const Window& other) = delete;
 
+	void Destroy();
 
-	bool Init(int width, int height, std::string name);
+	bool Init(int width, int height, std::string title);
 	bool Running();
-	void End();
+	void Update();
 	float GetTime();
 
 	GLFWwindow* Get() { return glfwWindow; }
@@ -26,11 +26,6 @@ public:
 	bool ShouldUpdateSize();
 
 private:
-	Window() = default;
-	~Window();
-	static void OnMouseMove(GLFWwindow* window, double x, double y);
-	static void OnMouseScroll(GLFWwindow* window, double xoff, double yoff);
 	GLFWwindow* glfwWindow;
 	float width, height;
-	static Window* instance;
 };

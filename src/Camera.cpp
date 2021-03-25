@@ -1,10 +1,10 @@
 #include "Camera.h"
 
-Camera::Camera(glm::vec2 position, float zoom, glm::vec2 windowSize)
+Camera::Camera(glm::vec2 position, glm::vec2 windowSize, float zoom)
 {
 	this->position = position;
-	this->zoom = zoom;
 	this->windowSize = windowSize;
+	this->zoom = zoom;
 }
 
 glm::mat4 Camera::GetProjection()

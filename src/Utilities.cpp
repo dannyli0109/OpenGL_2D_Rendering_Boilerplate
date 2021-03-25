@@ -16,7 +16,7 @@ std::string LoadFileAsString(std::string filename)
 	}
 	else
 	{
-		*Console::GetInstance() << "Error loading file: " << filename << true;
+		std::cout << "Error loading file: " << filename << std::endl;
 		return "";
 	}
 }

@@ -1,18 +1,8 @@
 #include "Window.h"
-#include "EventManager.h"
-#include "Event.h"
-Window* Window::CreateInstance()
+#include "Graphics.h"
+Window::Window(int width, int height, std::string title)
 {
-	if (!instance)
-	{
-		instance = new Window();
-	}
-	return instance;
-}
-
-Window* Window::GetInstance()
-{
-	return instance;
+	Init(width, height, title);
 }
 
 Window::~Window()
@@ -20,12 +10,19 @@ Window::~Window()
 	glfwTerminate();
 }
 
-bool Window::Init(int width, int height, std::string name)
+bool Window::Init(int width, int height, std::string title)
 {
 	if (!glfwInit())
+	{
 		return false;
+	}
+	
+	if (glfwWindow)
+	{
+		Destroy();
+	}
 
-	glfwWindow = glfwCreateWindow(width, height, name.c_str(), nullptr, nullptr);
+	glfwWindow = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
 
 	this->width = width;
 	this->height = height;
@@ -47,9 +44,6 @@ bool Window::Init(int width, int height, std::string name)
 
 	glfwSetWindowUserPointer(glfwWindow, this);
 
-	glfwSetCursorPosCallback(glfwWindow, OnMouseMove);
-	glfwSetScrollCallback(glfwWindow, OnMouseScroll);
-
 	return true;
 }
 
@@ -58,7 +52,7 @@ bool Window::Running()
 	return !glfwWindowShouldClose(glfwWindow);
 }
 
-void Window::End()
+void Window::Update()
 {
 	glfwSwapBuffers(glfwWindow);
 	glfwPollEvents();
@@ -71,8 +65,8 @@ float Window::GetTime()
 
 void Window::Destroy()
 {
-	if (instance) delete instance;
-	instance = nullptr;
+	glfwDestroyWindow(glfwWindow);
+	glfwWindow = nullptr;
 }
 
 glm::vec2 Window::GetSize()
@@ -89,16 +83,4 @@ bool Window::ShouldUpdateSize()
 	this->height = height;
 	return true;
 }
-
-void Window::OnMouseMove(GLFWwindow* window, double x, double y)
-{
-	EventManager::GetInstance()->OnMouseMove({ x, y });
-}
-
-void Window::OnMouseScroll(GLFWwindow* window, double xoff, double yoff)
-{
-	EventManager::GetInstance()->OnMouseScroll({ xoff, yoff });
-}
-
-Window* Window::instance = nullptr;
 

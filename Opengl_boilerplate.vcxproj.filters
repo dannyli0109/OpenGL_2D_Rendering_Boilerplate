@@ -19,15 +19,6 @@
     <Filter Include="Libs\glad">
       <UniqueIdentifier>{1ddc5f31-0296-4ce2-827e-19d6f8b87bde}</UniqueIdentifier>
     </Filter>
-    <Filter Include="App">
-      <UniqueIdentifier>{c367e974-44f1-4636-8abb-ed8149de6ed1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\Events">
-      <UniqueIdentifier>{4304a04a-55e5-43c2-a2e8-e7fe40d697c8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\Layers">
-      <UniqueIdentifier>{c7906e00-7a39-473c-8f9c-4570c73f3a16}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="lib\imgui\imgui.cpp">
@@ -54,29 +45,14 @@
     <ClCompile Include="src\Window.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="src\ProgramManager.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="lib\glad\glad.c">
-      <Filter>Libs\glad</Filter>
-    </ClCompile>
     <ClCompile Include="src\Camera.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
     <ClCompile Include="src\FrameBuffer.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="src\AABB.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ImGuiContainer.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
     <ClCompile Include="src\IndexBuffer.cpp">
       <Filter>Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Console.cpp">
-      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="src\LineRenderer.cpp">
       <Filter>Rendering</Filter>
@@ -108,32 +84,9 @@
     <ClCompile Include="src\Utilities.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="App.cpp">
-      <Filter>App</Filter>
-    </ClCompile>
-    <ClCompile Include="GLFWCallbacks.cpp">
-      <Filter>Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="EventManager.cpp">
-      <Filter>Core\Events</Filter>
-    </ClCompile>
-    <ClCompile Include="Layer.cpp">
-      <Filter>Core\Layers</Filter>
-    </ClCompile>
-    <ClCompile Include="LayerStack.cpp">
-      <Filter>Core\Layers</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneLayer.cpp">
-      <Filter>App</Filter>
-    </ClCompile>
-    <ClCompile Include="src\EntryPoint.cpp">
-      <Filter>App</Filter>
-    </ClCompile>
-    <ClCompile Include="ConsoleLayer.cpp">
-      <Filter>App</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneWindow.cpp">
-      <Filter>App</Filter>
+    <ClCompile Include="src\Renderer2D.cpp" />
+    <ClCompile Include="lib\glad\glad.c">
+      <Filter>Libs\glad</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -158,9 +111,6 @@
     <ClInclude Include="src\Window.h">
       <Filter>Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="src\ProgramManager.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="lib\imgui\imstb_textedit.h">
       <Filter>Libs\imgui</Filter>
     </ClInclude>
@@ -169,18 +119,6 @@
     </ClInclude>
     <ClInclude Include="lib\imgui\imstb_truetype.h">
       <Filter>Libs\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\glad\glad.h">
-      <Filter>Libs\glad</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\glad\khrplatform.h">
-      <Filter>Libs\glad</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GUI.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Debug.h">
-      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Graphics.h">
       <Filter>Core</Filter>
@@ -196,15 +134,6 @@
     </ClInclude>
     <ClInclude Include="src\FrameBufferVertex.h">
       <Filter>Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="src\AABB.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Console.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ImGuiContainer.h">
-      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="src\IndexBuffer.h">
       <Filter>Rendering</Filter>
@@ -251,35 +180,12 @@
     <ClInclude Include="src\ResourceManager.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="App.h">
-      <Filter>App</Filter>
+    <ClInclude Include="src\Renderer2D.h" />
+    <ClInclude Include="lib\glad\glad.h">
+      <Filter>Libs\glad</Filter>
     </ClInclude>
-    <ClInclude Include="GLFWCallbacks.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Event.h">
-      <Filter>Core\Events</Filter>
-    </ClInclude>
-    <ClInclude Include="EventManager.h">
-      <Filter>Core\Events</Filter>
-    </ClInclude>
-    <ClInclude Include="Layer.h">
-      <Filter>Core\Layers</Filter>
-    </ClInclude>
-    <ClInclude Include="ConcreteEvent.h">
-      <Filter>Core\Events</Filter>
-    </ClInclude>
-    <ClInclude Include="LayerStack.h">
-      <Filter>Core\Layers</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneLayer.h">
-      <Filter>App</Filter>
-    </ClInclude>
-    <ClInclude Include="ConsoleLayer.h">
-      <Filter>App</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneWindow.h">
-      <Filter>App</Filter>
+    <ClInclude Include="lib\glad\khrplatform.h">
+      <Filter>Libs\glad</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -27,8 +27,8 @@ public:
 #pragma endregion
 
 public:
-	void DrawQuad(const glm::mat4& transform, Texture* texture, const glm::vec4& tintColor, bool flipped = false);
-	void DrawQuad(const glm::vec3& position, Texture* texture, const glm::vec4& tintColor, bool flipped = false);
+	void DrawQuad(const glm::mat4& transform, Texture* texture, const glm::vec4& tintColor, const glm::vec2 tiling = { 1, 1 }, bool flipped = false);
+	void DrawQuad(const glm::vec3& position, Texture* texture, const glm::vec4& tintColor, const glm::vec2 tiling = { 1, 1 }, bool flipped = false);
 	void DrawQuad(const glm::mat4& transform, const glm::vec4& tintColor);
 	void DrawQuad(const glm::vec3& position, const glm::vec4& tintColor);
 private:
@@ -48,10 +48,10 @@ private:
 	Texture* whiteTexture;
 
 	glm::vec4 quadPositions[4] = {
-	{-0.5f, 0.5f, 0, 1.0f},
-	{0.5f, 0.5f, 0, 1.0f},
-	{-0.5f, -0.5f, 0, 1.0f},
-	{0.5f, -0.5f, 0, 1.0f}
+		{-0.5f, 0.5f, 0, 1.0f},
+		{0.5f, 0.5f, 0, 1.0f},
+		{-0.5f, -0.5f, 0, 1.0f},
+		{0.5f, -0.5f, 0, 1.0f}
 	};
 
 	glm::vec2 quadUvs[4] = {

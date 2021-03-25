@@ -7,4 +7,5 @@ struct QuadVertex
 	glm::vec4 color;
 	glm::vec2 uv;
 	float textureIndex;
+	glm::vec2 tiling;
 };

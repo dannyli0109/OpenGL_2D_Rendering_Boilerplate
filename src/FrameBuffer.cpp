@@ -39,13 +39,12 @@ void FrameBuffer::Create(int width, int height)
 	glBindFramebuffer(GL_FRAMEBUFFER, fboID);
 	glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, texID, 0);
 
-	Console* console = Console::GetInstance();
 	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE)
 	{
-		*console << "Frame Buffer initialised successfully!" << true;
+		std::cout << "Frame Buffer initialised successfully!" << std::endl;
 	}
 	else {
-		*console << "Frame Buffer failed to initialise" << true;
+		std::cout << "Frame Buffer failed to initialise" << true;
 		Destroy();
 	}
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);

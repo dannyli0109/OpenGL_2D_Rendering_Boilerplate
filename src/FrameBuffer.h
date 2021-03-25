@@ -1,6 +1,6 @@
 #pragma once
 #include "Graphics.h"
-#include "Console.h"
+#include <iostream>
 
 class FrameBuffer
 {

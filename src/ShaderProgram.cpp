@@ -7,8 +7,6 @@ ShaderProgram::ShaderProgram(std::string vertexFileName, std::string fragmentFil
 	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 	shaderProgram = glCreateProgram();
 
-	Console* console = Console::GetInstance();
-
 	std::string vertexSource = LoadFileAsString(vertexFileName);
 	std::string fragmentSource = LoadFileAsString(fragmentFileName);
 
@@ -22,14 +20,14 @@ ShaderProgram::ShaderProgram(std::string vertexFileName, std::string fragmentFil
 	if (!success)
 	{
 		//Something failed with the vertex shader compilation
-		(*console) << "Vertex shader " << vertexFileName << " failed with error:" << true;
+		std::cout << "Vertex shader " << vertexFileName << " failed with error:" << std::endl;
 		glGetShaderInfoLog(vertexShader, 512, nullptr, errorLog);
-		*console << errorLog << true;
+		std::cout << errorLog << true;
 		loaded = false;
 	}
 	else
 	{
-		(*console) << vertexFileName << " compiled successfully." << true;
+		std::cout << vertexFileName << " compiled successfully." << true;
 	}
 
 	const char* fragmentSourceC = fragmentSource.c_str();
@@ -41,14 +39,14 @@ ShaderProgram::ShaderProgram(std::string vertexFileName, std::string fragmentFil
 	if (!success)
 	{
 		//Something failed with the fragment shader compilation
-		*console << "Fragment shader " << fragmentFileName << " failed with error:" << true;
+		std::cout << "Fragment shader " << fragmentFileName << " failed with error:" << true;
 		glGetShaderInfoLog(fragmentShader, 512, nullptr, errorLog);
-		*console << errorLog << true;
+		std::cout << errorLog << true;
 		loaded = false;
 	}
 	else
 	{
-		*console << fragmentFileName << " compiled successfully." << true;
+		std::cout << fragmentFileName << " compiled successfully." << true;
 	}
 
 	glAttachShader(shaderProgram, vertexShader);
@@ -57,16 +55,16 @@ ShaderProgram::ShaderProgram(std::string vertexFileName, std::string fragmentFil
 	glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
 	if (success == GL_FALSE)
 	{
-		*console << "Error linking shaders " << vertexFileName << " and " << fragmentFileName << true;
+		std::cout << "Error linking shaders " << vertexFileName << " and " << fragmentFileName << std::endl;
 		glGetProgramInfoLog(shaderProgram, 512, nullptr, errorLog);
-		*console << errorLog << true;
+		std::cout << errorLog << std::endl;
 		loaded = false;
 	}
 
 
 	if (loaded)
 	{
-		*console << "Shader program linked successfully" << true;
+		std::cout << "Shader program linked successfully" << std::endl;
 	}
 	else
 	{

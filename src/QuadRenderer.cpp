@@ -16,7 +16,7 @@ QuadRenderer::QuadRenderer(ShaderProgram* shader, int batchSize)
 	indices.resize(maxIndices);
 	textureSlots.resize(maxTextureSlots);
 	
-	whiteTexture = ResourceManager::GetInstance()->GetTexture(TextureKey::white);
+	whiteTexture = ResourceManager::GetInstance()->GetTexture(0);
 	textureSlots[0] = whiteTexture;
 	textureSlotIndex = 1;
 
@@ -52,7 +52,8 @@ QuadRenderer::QuadRenderer(ShaderProgram* shader, int batchSize)
 			{3, GL_FLOAT, sizeof(QuadVertex), (const void*)offsetof(QuadVertex, QuadVertex::position)},
 			{4, GL_FLOAT, sizeof(QuadVertex), (const void*)offsetof(QuadVertex, QuadVertex::color)},
 			{2, GL_FLOAT, sizeof(QuadVertex), (const void*)offsetof(QuadVertex, QuadVertex::uv)},
-			{1, GL_FLOAT, sizeof(QuadVertex), (const void*)offsetof(QuadVertex, QuadVertex::textureIndex)}
+			{1, GL_FLOAT, sizeof(QuadVertex), (const void*)offsetof(QuadVertex, QuadVertex::textureIndex)},
+			{2, GL_FLOAT, sizeof(QuadVertex), (const void*)offsetof(QuadVertex, QuadVertex::tiling)}
 		}
 	);
 
@@ -111,7 +112,7 @@ void QuadRenderer::End()
 	Flush();
 }
 
-void QuadRenderer::DrawQuad(const glm::mat4& transform, Texture* texture, const glm::vec4& tintColor, bool flipped)
+void QuadRenderer::DrawQuad(const glm::mat4& transform, Texture* texture, const glm::vec4& tintColor, const glm::vec2 tiling, bool flipped)
 {
 	if (indexCount >= maxIndices) NextBatch();
 
@@ -142,6 +143,7 @@ void QuadRenderer::DrawQuad(const glm::mat4& transform, Texture* texture, const 
 		vertices[vertexCount].color = tintColor;
 		vertices[vertexCount].uv = quadUvs[i];
 		vertices[vertexCount].textureIndex = textureIndex;
+		vertices[vertexCount].tiling = tiling;
 		if (flipped)
 		{
 			vertices[vertexCount].uv.x = 1 - vertices[vertexCount].uv.x;
@@ -151,10 +153,10 @@ void QuadRenderer::DrawQuad(const glm::mat4& transform, Texture* texture, const 
 	indexCount += 6;
 }
 
-void QuadRenderer::DrawQuad(const glm::vec3& position, Texture* texture, const glm::vec4& tintColor, bool flipped)
+void QuadRenderer::DrawQuad(const glm::vec3& position, Texture* texture, const glm::vec4& tintColor, const glm::vec2 tiling, bool flipped)
 {
 	glm::mat4 transform = glm::translate(glm::mat4(1), position);
-	DrawQuad(transform, texture, tintColor, flipped);
+	DrawQuad(transform, texture, tintColor, tiling, flipped);
 }
 
 void QuadRenderer::DrawQuad(const glm::mat4& transform, const glm::vec4& tintColor)

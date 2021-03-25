@@ -1,15 +1,13 @@
 #pragma once
 #include "Graphics.h"
-#include "EventManager.h"
-#include "ConcreteEvent.h"
-#include "Console.h"
 class Camera
 {
 public:
-	Camera(glm::vec2 position, float zoom, glm::vec2 windowSize);
+	Camera(glm::vec2 position, glm::vec2 windowSize, float zoom);
 
 	glm::mat4 GetProjection();
 	void SetWindowSize(glm::vec2 windowSize) { this->windowSize = windowSize; }
+	void SetPosition(glm::vec2 position) { this->position = position; }
 	float GetZoom() { return zoom; }
 	void SetZoom(float zoom) { this->zoom = zoom; }
 private:
